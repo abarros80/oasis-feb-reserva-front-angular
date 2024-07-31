@@ -1,0 +1,238 @@
+
+
+<mat-card-content >
+
+
+  <form  >
+    <div class="flexbox-container">
+
+      <!-- RESTAURANTE -->
+      <div class="flexbox-sub-container">
+        <div class="flexbox-sub-container-item">
+
+          <!-- SELECT RESTAURANTE-->
+          <mat-form-field appearance="outline">
+            <mat-label>Restaurante</mat-label>
+            <mat-select  required >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let itemhotel of listHoteis" [value]="itemhotel.id">
+                {{itemhotel.nome}}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="hotel.errors?.required">
+              <p *ngIf="hotel.errors.required">Seleciona Restaurante</p>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <!-- QUARTO / NOME -->
+      <div class="flexbox-sub-container">
+
+        <!-- SELECT QUARTO-->
+        <div class="flexbox-sub-container-item">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Quarto</mat-label>
+            <mat-select  required >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let itemhotel of listHoteis" [value]="itemhotel.id">
+                {{itemhotel.nome}}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="hotel.errors?.required">
+              <p *ngIf="hotel.errors.required">Seleciona Quarto</p>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <!-- NOME -->
+        <div class="flexbox-sub-container-item">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput  required>
+          </mat-form-field>
+
+        </div>
+
+      </div>
+
+      <!-- N. ADULTO / N. CRIANÇA -->
+      <div class="flexbox-sub-container">
+
+        <!-- SELECT N. ADULTO-->
+        <div class="flexbox-sub-container-item">
+
+          <mat-form-field appearance="outline">
+            <mat-label>N. Adulto</mat-label>
+            <mat-select  required >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let itemhotel of listHoteis" [value]="itemhotel.id">
+                {{itemhotel.nome}}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="hotel.errors?.required">
+              <p *ngIf="hotel.errors.required">Seleciona N. Adulto</p>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <!-- SELECT N. ADULTO-->
+        <div class="flexbox-sub-container-item">
+
+          <mat-form-field appearance="outline">
+            <mat-label>N. Criança</mat-label>
+            <mat-select  required >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let itemhotel of listHoteis" [value]="itemhotel.id">
+                {{itemhotel.nome}}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="hotel.errors?.required">
+              <p *ngIf="hotel.errors.required">Seleciona N. Criança</p>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <!-- DATA / HORA -->
+      <div class="flexbox-sub-container">
+
+        <!-- DATA  -->
+        <div class="flexbox-sub-container-item">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data-Hora</mat-label>
+            <input matInput
+              [disabled]="true"
+              [matDatepicker]="dp3"
+              (click)="dp3.open()"
+              [min]="minDate"
+              [max]="maxDate"
+            >
+            <mat-datepicker-toggle matSuffix [for]="dp3" [disabled]="false">
+              <mat-icon matDatepickerToggleIcon>
+                calendar_month
+              </mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #dp3 [disabled]="false" ></mat-datepicker>
+            <mat-hint>DD/MM/YYYY</mat-hint>
+
+          </mat-form-field>
+
+        </div>
+
+        <!-- SELECT HORA-->
+        <div class="flexbox-sub-container-item">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Hora</mat-label>
+            <mat-select  required >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let itemhotel of listHoteis" [value]="itemhotel.id">
+                {{itemhotel.nome}}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="hotel.errors?.required">
+              <p *ngIf="hotel.errors.required">Seleciona Hora</p>
+            </mat-error>
+          </mat-form-field>
+
+
+
+        </div>
+      </div>
+
+      <!-- OBSERVAÇÃO -->
+      <div class="flexbox-sub-container">
+        <div class="flexbox-sub-container-item">
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Observação</mat-label>
+            <textarea matInput ></textarea>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <!-- BOTOES -->
+      <div class="flexbox-sub-container">
+        <div class="flexbox-sub-container-item">
+
+          <mat-card-actions class="buttons">
+
+            <button (click)="onSubmit()" mat-raised-button color="primary" [disabled]="!intervencaoForm.valid">{{ accao }}</button>
+            <button mat-raised-button color="warn" mat-dialog-close >Cancelar</button>
+
+          </mat-card-actions>
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+  </form>
+
+
+</mat-card-content>
+
+
+
+
+
+<!--
+
+<div class="container-sm" style="background-color: brown;">100% wide until small breakpoint</div>
+<div class="container-md" style="background-color: red;">100% wide until medium breakpoint</div>
+<div class="container-lg" style="background-color: green;">100% wide until large breakpoint</div>
+<div class="container-xl" style="background-color: yellow;">100% wide until extra large breakpoint</div>
+<div class="container-xxl" style="background-color: blue;">100% wide until extra extra large breakpoint</div>
+<div class="container-fluid" style="background-color: black;">Fluid containers </div>
+
+
+
+  <div style="float: right; width:50%;">
+
+    <h3>Form Status</h3>
+    <b>status : </b>{{intervencaoForm.status}}
+    <b>valid : </b>{{intervencaoForm.valid}}
+    <b>invalid : </b>{{intervencaoForm.invalid}}
+    <b>touched : </b>{{intervencaoForm.touched}}
+    <b>untouched : </b>{{intervencaoForm.untouched}}
+    <b>pristine : </b>{{intervencaoForm.pristine}}
+    <b>dirty : </b>{{intervencaoForm.dirty}}
+    <b>disabled : </b>{{intervencaoForm.disabled}}
+    <b>enabled : </b>{{intervencaoForm.enabled}}
+
+    <h3>Form Value</h3>
+    {{intervencaoForm.value |json}}
+
+  </div>
+
+
+-->
+
+
+
+
+
+
+
+

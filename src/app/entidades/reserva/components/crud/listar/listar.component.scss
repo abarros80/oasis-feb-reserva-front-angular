@@ -1,0 +1,92 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.mat-column-quarto {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mat-column-nome, .mat-column-observacao, .mat-column-hoster {
+  padding-left: 16px;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-paxadulto {
+  width: 32px;
+  text-align: center;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-paxcrianca {
+  width: 32px;
+  text-align: center;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-hora {
+  width: 32px;
+  text-align: center;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-datareserva {
+  width: 32px;
+  text-align: center;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-horaentrada {
+  width: 32px;
+  text-align: center;
+
+}
+
+mat-card{
+  margin-bottom: 10px;
+
+}
+
+.filtros {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+
+}
+
+.filtros-item {
+  flex: 0 1 auto;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  .filtros {
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
+ }
+
+.tabela{
+  margin-bottom: 10px;
+}

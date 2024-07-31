@@ -1,0 +1,38 @@
+.flexbox-container{
+  display: flex;
+	flex-direction: column;
+  gap: 10px;
+}
+
+.flexbox-sub-container{
+  display: flex;
+	flex-direction: row;
+  gap: 5px;
+
+}
+
+.example-full-width {
+  width: 50vw;
+  max-width: 500px;
+  min-width: 300px;
+}
+
+button {
+  margin-right: 5px;
+}
+
+
+// X-Small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .flexbox-sub-container{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .flexbox-sub-container-item mat-form-field{
+    width: 100%;
+  }
+
+ }
+

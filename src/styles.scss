@@ -1,4 +1,167 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+//1º) DEFINIR GAMA DE CORES
+
+/* For use in src/lib/core/theming/_palette.scss */
+$my-primary-color: (
+    50 : #e0eced,
+    100 : #b3cfd2,
+    200 : #80b0b4,
+    300 : #4d9095,
+    400 : #26787f,
+    500 : #006068,
+    600 : #005860,
+    700 : #004e55,
+    800 : #00444b,
+    900 : #00333a,
+    A100 : #70ebff,
+    A200 : #3de3ff,
+    A400 : #0adcff,
+    A700 : #00cdf0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$my-accent-color: (
+    50 : #e8f0f8,
+    100 : #c5daee,
+    200 : #9ec2e3,
+    300 : #77aad7,
+    400 : #5a97cf,
+    500 : #3d85c6,
+    600 : #377dc0,
+    700 : #2f72b9,
+    800 : #2768b1,
+    900 : #1a55a4,
+    A100 : #dae9ff,
+    A200 : #a7caff,
+    A400 : #74abff,
+    A700 : #5b9cff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$my-warn-color: (
+    50 : #f9e0e0,
+    100 : #f0b3b3,
+    200 : #e68080,
+    300 : #db4d4d,
+    400 : #d42626,
+    500 : #cc0000,
+    600 : #c70000,
+    700 : #c00000,
+    800 : #b90000,
+    900 : #ad0000,
+    A100 : #ffd7d7,
+    A200 : #ffa4a4,
+    A400 : #ff7171,
+    A700 : #ff5858,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+
+//2º) CRIAR PALETA DE CORES
+$candy-app-primary: mat.m2-define-palette($my-primary-color);
+$candy-app-accent:  mat.m2-define-palette($my-accent-color);
+$candy-app-warn:    mat.m2-define-palette($my-warn-color);
+
+
+//3º) DEFINIR NOSSO TEMA
+$candy-app-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $candy-app-primary,
+    accent: $candy-app-accent,
+    warn: $candy-app-warn,
+  )
+));
+
+//4º) APLICAR NOSSO TEMA AO ANGULAR
+@include mat.all-component-themes($candy-app-theme);
+
+//ADICIONAR CAMINHO DESSE FICHEIRO NO FICHEIRO ANGULAR.JSON
+
+//END
+
+
+/* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+.green-snackbar {
+  --mdc-snackbar-container-color: white !important;
+  --mdc-snackbar-supporting-text-color: #26686e !important;
+  --mat-mdc-snack-bar-button-color: #26686e !important;
+  white-space: pre-wrap
+}
+
+.green-snackbar button {
+  background-color: #006068;
+  color: white;
+  border: none;
+}
+
+.red-snackbar {
+  background: #F44336;
+  color: white;
+}
+
+.red-snackbar button {
+  background-color: #F44336;
+  color: white !important;
+  border: none;
+}

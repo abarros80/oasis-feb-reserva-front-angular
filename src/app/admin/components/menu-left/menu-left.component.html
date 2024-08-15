@@ -2,10 +2,28 @@
   <mat-card-content>
     <div class="menu">
       <ul class="menu-container">
-        <li class="menu_item"><a href="#news" class="menu_link">Reserva</a></li>
-        <li class="menu_item"><a href="#news" class="menu_link">Estatistica</a></li>
+        <li class="menu_item"><a href="#news" class="menu_link">
+          <a mat-list-item [routerLink]="['./rs/listar']" routerLinkActive="active" class="menu_link">
+            Reserva
+          </a>
+        </a></li>
+
+        <mat-divider></mat-divider>
+        <li class="menu_item">
+          <a mat-list-item [routerLink]="['./rs/1/ver']" routerLinkActive="active" class="menu_link">
+            Estatistica
+          </a>
+        </li>
+
+        <mat-divider></mat-divider>
         <li class="menu_item"><a href="#news" class="menu_link">Observaçao</a></li>
-        <li class="menu_item"><a href="#news" class="menu_link">News</a></li>
+
+        <mat-divider></mat-divider>
+        <li class="menu_item">
+          <a mat-list-item [routerLink]="['./user/listar']" routerLinkActive="active" class="menu_link">
+            User
+          </a>
+        </li>
       </ul>
     </div>
 

@@ -89,6 +89,8 @@ export class LoginComponent implements OnInit {
 
     if(this.formLogin.valid){
 
+      this.router.navigate(['/oa-admin/']);
+
 
     } else {
       console.log("formulario invalido");

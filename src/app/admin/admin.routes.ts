@@ -9,6 +9,9 @@ export const ADMIN_ROUTS: Routes = [
       { path: '', component: MainComponent },
       { path: 'rs',
         loadChildren: () => import('../entidades/reserva/reserva.routes').then(r => r.RESERVA_ROUTS)
+      },
+      { path: 'user',
+        loadChildren: () => import('../entidades/user/user.routes').then(r => r.USER_ROUTS)
       }
     ]
   },

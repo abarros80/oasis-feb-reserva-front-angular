@@ -1,8 +1,14 @@
 <h3 >Reservas</h3>
-<div class="reserva-menu">
+<div class="menu">
 
-  <div><button mat-raised-button>Listar</button></div>
-  <div><button mat-raised-button>Criar</button></div>
+
+  <div>
+    <button  mat-stroked-button color="primary" class="mat-elevation-z8 bt-sub-menu" (click)="navegarParaListar()">Listar</button>
+  </div>
+
+  <div>
+    <button mat-stroked-button  color="primary" class="mat-elevation-z8 bt-sub-menu" (click)="addContact()">Criar</button>
+  </div>
 
 </div>
 <router-outlet />

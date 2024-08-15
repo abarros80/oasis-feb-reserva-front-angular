@@ -1,115 +1,218 @@
 <div class="main">
-<div class="titulo"><h6 style="text-align: center;">Listar</h6></div>
 
-<mat-card appearance="outlined">
-  <mat-card-content>
-<div class="filtros">
+  <!-- TITULO -->
+  <div class="titulo"><h6 style="text-align: center;">Listar</h6></div>
 
-  <div>
+  <!-- FILTRO AVANÇADO -->
+  <mat-card appearance="outlined">
+    <mat-card-content>
 
-    <mat-form-field hintLabel="Max 10 characters" class="filtros-item" appearance="outline">
-      <mat-label>Enter some input</mat-label>
-      <input matInput #input maxlength="10" placeholder="Ex. Nougat" (input)="onInput($event)" />
-      <mat-hint align="end">{{value().length}}/10</mat-hint>
-    </mat-form-field>
+
+          <!-- FORM PESQUISA -->
+    <form [formGroup]="formPesquisa"  >
+      <div class="filtros">
+
+
+
+            <div>
+              <!-- SELECT HOTEL-->
+              <mat-form-field class="filtros-item" appearance="outline">
+                <mat-label>Opcao</mat-label>
+                <mat-select formControlName="opcao" (selectionChange)="mudarEstadoBotaoPesquisa()">
+                  <mat-option>None</mat-option>
+                  <mat-option  value="Todos">Todos</mat-option>
+                  <mat-option  value="Nome">Nome</mat-option>
+                  <mat-option  value="Telefone">Telefone</mat-option>
+                  <mat-option  value="Email">Email</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="filtros-item" appearance="outline">
+                <mat-label>Texto</mat-label>
+                <input formControlName="texto" matInput  [placeholder]="getOpcao.value" (keyup)="mudarEstadoBotaoPesquisa()">
+              </mat-form-field>
+            </div>
+
+            <div >
+              <mat-checkbox formControlName="activo" class="mybutton filtros-item">Ativo</mat-checkbox>
+            </div>
+
+            <div>
+              <button (click)="onSubmit()" mat-raised-button color="primary" class="mybutton filtros-item" [disabled]="disabledBotaoPesquisa">Pesquisa</button>
+              <button mat-raised-button type="button" (click)="limparPesquisa()"  class="mybutton filtros-item">Limpar</button>
+            </div>
+            <div class="item item-1"fxFlex></div>
+
+      </div>
+  </form>
+
+
+
+    </mat-card-content>
+  </mat-card>
+
+
+
+
+
+
+    <!-- REFRESH -->
+
+    <div class="filtros">
+        <div></div>
+
+        <div>
+          <button mat-icon-button color="primary" (click) = readAll()>
+            <mat-icon>replay</mat-icon>
+          </button>
+        </div>
   </div>
 
-  <div>
-    <mat-form-field class="filtros-item" appearance="outline">
-      <mat-label>Select me</mat-label>
-      <mat-select>
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-    </mat-form-field>
+
+
+
+
+
+
+
+
+  <!-- FILTRO RAPIDO -->
+  <mat-form-field appearance="outline">
+    <mat-label>Filtro Rapido</mat-label>
+    <input matInput (keyup)="applyFilter($event)"  #input>
+  </mat-form-field>
+
+  <!-- TABELA DE DADOS -->
+  <div class="mat-elevation-z8 tabela-container">
+
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortEvent = $event; readAll()">
+
+      <!-- Quarto -->
+      <ng-container matColumnDef="quarto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quarto </th>
+        <td mat-cell *matCellDef="let element"> {{element.quarto}} </td>
+      </ng-container>
+
+
+      <!-- Restaurante -->
+      <ng-container matColumnDef="restaurante">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Restaurante </th>
+        <td mat-cell *matCellDef="let element"> {{element.restaurante}} </td>
+      </ng-container>
+
+      <!-- Nome -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+      </ng-container>
+
+      <!-- Pax Adulto -->
+      <ng-container matColumnDef="paxadulto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pax Adulto </th>
+        <td mat-cell *matCellDef="let element"> {{element.paxadulto}} </td>
+      </ng-container>
+
+      <!-- Pax Criança -->
+      <ng-container matColumnDef="paxcrianca">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pax Criança </th>
+        <td mat-cell *matCellDef="let element"> {{element.paxcrianca}} </td>
+      </ng-container>
+
+      <!-- hora -->
+      <ng-container matColumnDef="hora">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora Reserva </th>
+        <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+      </ng-container>
+
+      <!-- Data Reserva -->
+      <ng-container matColumnDef="datareserva">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Reserva </th>
+        <td mat-cell *matCellDef="let element"> {{element.datareserva}} </td>
+      </ng-container>
+
+      <!-- Hoster -->
+      <ng-container matColumnDef="hoster">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hoster </th>
+        <td mat-cell *matCellDef="let element"> {{element.hoster}} </td>
+      </ng-container>
+
+      <!-- Observação -->
+      <ng-container matColumnDef="observacao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Observação </th>
+        <td mat-cell *matCellDef="let element"> {{element.observacao}} </td>
+      </ng-container>
+
+      <!-- Hora Entrada -->
+      <ng-container matColumnDef="horaentrada">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora Entrada </th>
+        <td mat-cell *matCellDef="let element"> {{element.horaentrada}} </td>
+      </ng-container>
+
+
+      <!-- EDITAR/VER/DELETE -->
+      <ng-container matColumnDef="acoes">
+        <th class="mat-header" mat-header-cell *matHeaderCellDef style="text-align: center;"> ACCAO </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;">
+
+          <a class="edit" routerLinkActive="active" >
+            <button mat-icon-button color="primary" (click) = "editarReserva(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </a>
+
+          <a class="edit" routerLinkActive="active" >
+            <button mat-icon-button color="accent" (click) = "verReserva(element)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </a>
+
+          <a class="delete" routerLinkActive="active">
+            <button mat-icon-button color="warn" (click) = "deleteReservaDialgo(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </a>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+
+    <mat-paginator
+
+        [length]="totalElements"
+        [pageSize]="sizeInicial"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = $event; readAll()"
+        showFirstLastButtons
+        aria-label="Select page"
+
+        ></mat-paginator>
+
+    <!-- SPINNER - CARREGANDO -->
+     @if(carregando){
+      <div class="spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+     }
+
+     @if(!carregando && totalElements === 0){
+      <div class="spinner">
+        <p>Sem Dados...</p>
+      </div>
+     }
+
+
+
   </div>
 
-  <div>
 
-    <button mat-fab aria-label="Example icon button with a vertical three dot icon">
-      <mat-icon>search</mat-icon>
-    </button>
-
-  </div>
-
-
-</div>
-
-</mat-card-content>
-</mat-card>
-
-
-<mat-form-field appearance="outline">
-  <mat-label>Filtro Rapido</mat-label>
-  <input matInput (keyup)="applyFilter($event)"  #input>
-</mat-form-field>
-
-<div class="mat-elevation-z8 tabela">
-  <table mat-table [dataSource]="dataSource" matSort>
-    <!-- Quarto -->
-    <ng-container matColumnDef="quarto">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Quarto </th>
-      <td mat-cell *matCellDef="let element"> {{element.quarto}} </td>
-    </ng-container>
-
-    <!-- Nome -->
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Cliente </th>
-      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-    </ng-container>
-
-    <!-- Pax Adulto -->
-    <ng-container matColumnDef="paxadulto">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pax Adulto </th>
-      <td mat-cell *matCellDef="let element"> {{element.paxadulto}} </td>
-    </ng-container>
-
-    <!-- Pax Criança -->
-    <ng-container matColumnDef="paxcrianca">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pax Criança </th>
-      <td mat-cell *matCellDef="let element"> {{element.paxcrianca}} </td>
-    </ng-container>
-
-    <!-- hora -->
-    <ng-container matColumnDef="hora">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora Reserva </th>
-      <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
-    </ng-container>
-
-    <!-- Data Reserva -->
-    <ng-container matColumnDef="datareserva">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Reserva </th>
-      <td mat-cell *matCellDef="let element"> {{element.datareserva}} </td>
-    </ng-container>
-
-    <!-- Hoster -->
-    <ng-container matColumnDef="hoster">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Hoster </th>
-    <td mat-cell *matCellDef="let element"> {{element.hoster}} </td>
-  </ng-container>
-
-        <!-- Observação -->
-    <ng-container matColumnDef="observacao">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Observação </th>
-      <td mat-cell *matCellDef="let element"> {{element.observacao}} </td>
-    </ng-container>
-
-    <!-- Hora Entrada -->
-    <ng-container matColumnDef="horaentrada">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora Entrada </th>
-      <td mat-cell *matCellDef="let element"> {{element.horaentrada}} </td>
-    </ng-container>
-
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of periodic elements">
-  </mat-paginator>
-</div>
 
 
 </div>

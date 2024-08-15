@@ -28,5 +28,6 @@ export const RESERVA_ROUTS: Routes = [
           path: ':id/apagar',
           loadComponent: () => import('./components/crud/apagar/apagar.component').then(c => c.ApagarComponent)
         }
+
       ]
  }];

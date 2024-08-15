@@ -168,3 +168,19 @@ ng g i entidades/user/interfaces/i-req-user
 
 
 npm i @angular/material-moment-adapter
+
+
+GIT
+
+…or create a new repository on the command line
+
+echo "# oasis-feb-reserva-front-angular" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/abarros80/oasis-feb-reserva-front-angular.git
+git push -u origin main
+
+
+PASTA LOCAL: /c/dev/OASIS/feb/oasis-feb-reserva-front
